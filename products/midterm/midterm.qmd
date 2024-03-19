@@ -1,0 +1,153 @@
+---
+title: "Molecular Epidemiology Midterm"
+subtitle: "Spring Semester 2024"
+author: "Savannah Hammerton"
+format: 
+  docx:
+    toc: true
+bibliography: project.bib
+csl: aje.csl    
+---
+
+
+
+```{r}
+#| echo: FALSE
+#| message: false
+#| warning: false
+dat <-  readRDS(here::here("data/processed-data/clean_dat.rds"))
+
+# Function to fix table sizes in rendered doc
+FitFlextableToPage <- function(ft, pgwidth = 6.5){
+
+  ft_out <- ft |> flextable::autofit()
+
+  ft_out <- flextable::width(ft_out, width = dim(ft_out)$widths*pgwidth /(flextable::flextable_dim(ft_out)$widths))
+  return(ft_out)
+}
+
+# Set themes for ggplots
+ggplot2::theme_set(ggplot2::theme_minimal())
+```
+
+
+# Introduction
+
+Genetic drift leads a regular need to re-assess and update influenza vaccine strains from year to year [@cdc22a]. Differences between influenza vaccine strains and circulating strains have been cited as one of the causes of reduced vaccine efficacy [@belongia16; @dacosta22; @tenforde21a; @tricco13]. "Mismatch" between the strains is often defined somewhat arbitrarily and dichotomously, but using continuous genetic distance measures could lead to a better understanding of the impact of genetic drift and vaccine mismatch on changes in vaccine effectiveness in populations [@tricco13; @dacosta22]. However, there is not just one circulating strain per season, as genetic drift happens continuously over the flu season. One approach to beginning to understand the impact of genetic drift on vaccine effectiveness is to assess the gradual change and evolution over time and compare genetic distances using phylogenetic tree-based methods. In this project, I plan to do this for influenza A. 
+
+The purpose of this project will be to examine the differences in genetic drift and diversity between the H1N1 and H3N2 sub-types of the influenza A virus in humans in the United States over the years 2013-2017. 
+
+# Methods 
+
+Data were obtained from [BV-VRC.org](https://www.bv-brc.org/view/Taxonomy/11320?and(eq(host_group,Human),eq(isolation_country,%22USA%22),or(eq(collection_year,%222016%22),eq(collection_year,%222015%22),eq(collection_year,%222014%22),eq(collection_year,%222013%22),eq(collection_year,%222017%22)),or(eq(subtype,%22H1N1%22),eq(subtype,%22H3N2%22)),eq(genome_status,%22Complete%22),eq(segment,%224%22))#view_tab=genomes&filter=false), using these search filters[@bvbrc]:
+
+  * Genome Status: Complete
+  * Segment: 4 (HA)
+  * Subtype: H1N1, H3N2
+  * Collection Year: 2013-2017
+  * Isolation Country: USA
+  * Host Group: Human
+  
+The meta-data CSV and sequence FASTA files were downloaded and linked by GenBank Accession numbers in R (FASTA file was loaded using the `seqinr` package) [@charif07]. The final data set was then grouped by sub-type (H1N1 and H3N2) and year (2013-2017). Fifty random samples were taken in each group to reduce the final sample size from 9,853 to 500 (seed was set to 42 for reproducibility).    
+
+The H1N1 and H3N2 sequences will be used to generate two separate phylogenetic trees (one for each sub-type) that span 2013-2017, meaning there will be 250 sequences used for each tree. Genetic distances will be used to compare the genetic drift of the two sub-types over the observation period. 
+
+There are potential limits with this method and data. To decrease the overall sample size to a number requiring a more reasonable amount of computation time, only 50 sequences were sampled from each sub-type in each year. Additionally, there appears to be too much missing data to examine differences in age and gender (@tbl-h1n1 and @tbl-h3n2).  
+
+# Exploratory Results 
+
+@tbl-h1n1 and @tbl-h3n2 show some basic meta-data for the H1N1 and H3N2 sequences, respectively. The tables are stratified by the year the sample was collected, and contain information on what season the sample is associated with and the age and gender of the host (all are human). 
+  
+```{r tbl-h1n1}
+#| echo: FALSE
+#| message: false
+#| warning: false
+#| tbl-cap: "Population characteristics for H1N1 strains"
+
+dat |> 
+  dplyr::filter(subtype == "H1N1") |> 
+  dplyr::select(season, age, host_gender, collection_year) |> 
+  gtsummary::tbl_summary(by = "collection_year") |> 
+  gtsummary::modify_header(label = "Var.") |> 
+  gtsummary::as_flex_table() |> 
+  flextable::autofit() |> 
+  FitFlextableToPage()
+```
+  
+```{r tbl-h3n2}
+#| echo: FALSE 
+#| message: false
+#| warning: false
+#| tbl-cap: "Population characteristics for H3N2 strains"
+dat |> 
+  dplyr::filter(subtype == "H3N2") |> 
+  dplyr::select(season, age, host_gender, collection_year) |> 
+  gtsummary::tbl_summary(by = "collection_year") |> 
+  gtsummary::modify_header(label = "Var.") |> 
+  gtsummary::as_flex_table() |> 
+  flextable::autofit() |> 
+  FitFlextableToPage()
+
+```
+
+One interesting initial finding, as shown in @fig-seq, is that there are some repeating H1N1 sequences across the observation time, but no repeating H3N2 sequences - there are 250 unique H3N2 sequences over the time period. We may expect to see increased genetic diversity in H3N2 when examining genetic distance as well. 
+
+```{r fig-seq}
+#| echo: FALSE 
+#| message: false
+#| warning: false
+#| fig-cap: "Occurrences of H1N1 (left) and H3N2 (right) strains across 2013-2017"
+knitr::include_graphics(here::here("results/figures/strain_nums_fct.png"))
+``` 
+ 
+There appears to be a large variety of locations from which the sequenced samples arose (@fig-loc). However, the proportion of samples that had locations generalized to USA appear to be similar across the sub-types, which implies that, assuming the frequency of specific location is similar across sub-types in general, the random sampling used to generate the final data set did not induce bias (at least in this aspect). 
+ 
+```{r fig-loc}
+#| echo: FALSE 
+#| message: false
+#| warning: false
+#| fig-cap: "Geographic location of samples for H1N1 (top) and H3N2 (bottom) strains across 2013-2017"
+knitr::include_graphics(here::here("results/figures/loc_fig.png"))
+  
+``` 
+
+
+H1N1 sample collections seemed to occur around the traditional flu season (late Fall to early Spring), but H3N2 sample collections seem slightly more sporadic (@fig-date). For example, the data set does not include any H3N2 samples collected between March of 2013 and April of 2014. However, this could be due to primary circulating strains, as the CDC Vaccine Effectiveness studies reported mostly H1N1 infections in the 2013-2014 season [@cdc19]. There also appear to be a stronger seasonality in the H1N1 samples compared to the H3N2, which are often more spread out throughout the season, _e.g._ the 2015-2016 season. 
+
+There are some samples that have nonspecific collection dates (only the years are reported). The frequency of this by year and sub-type is presented in @tbl-miss.
+
+```{r fig-date}
+#| echo: FALSE 
+#| message: false
+#| warning: false
+#| fig-cap: "Collection date of H1N1 (top) and H3N2 (bottom) samples across 2013-2017"
+
+knitr::include_graphics(here::here("results/figures/collection_timing.png"))
+
+```
+
+```{r tbl-miss}
+#| echo: FALSE 
+#| message: false
+#| warning: false
+#| tbl-cap: "Number of missing specific collection dates of samples per sub-type per year"
+
+dat |> 
+  dplyr::mutate(
+    collection_date2 = lubridate::as_date(collection_date)) |> 
+  dplyr::filter(is.na(collection_date2)) |> 
+  dplyr::select(subtype, collection_date) |> 
+  dplyr::group_by(subtype) |> 
+  dplyr::count(collection_date) |> 
+  tidyr::pivot_wider(names_from = subtype, values_from = n) |> 
+  dplyr::mutate(H3N2 = ifelse(is.na(H3N2), 0, H3N2)) |> 
+  dplyr::rename("Year collected" = collection_date) |> 
+  flextable::flextable()
+  
+```
+
+Overall, H1N1 patterns appear more consistent and regular than H3N2 patterns. Metadata appear similar between the two sub-types, hopefully indicating that random sampling did not induce any bias. I hypothesize that we will observe increased genetic drift and diversity in the H3N2 phylogenetic tree compared to the H1N1 tree. 
+
+\newpage
+
+# References 
