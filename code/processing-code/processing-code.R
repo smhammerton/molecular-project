@@ -1,3 +1,10 @@
+# To install msa on a new computer: 
+# install.packages("BiocManager")
+# BiocManager::install("msa")
+
+
+library(msa)
+
 dat <-  readRDS(here::here("data/processed-data/sampled_dat.rds"))
 
 
@@ -25,3 +32,12 @@ table(clean_dat$host_gender)
 
 
 saveRDS(clean_dat, here::here("data/processed-data/clean_dat.rds"))
+
+
+# Sequence alignment -----------------------------------------------------------
+# Thu Mar 21 11:29:42 2024 ------------------------------
+
+seqstring <- 
+  Biostrings::readRNAStringSet(here::here("data/raw-data/BVBRC_genome_sequence.fasta"))
+alignment <- 
+  msa::msa(seqstring)
