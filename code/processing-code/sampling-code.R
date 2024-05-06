@@ -19,7 +19,8 @@ selected_dat <-
                 bio_project_accession, gen_bank_accessions, sequencing_center,
                 isolation_source, isolation_comments, collection_date, 
                 collection_year, season, geographic_location, host_gender,
-                host_age, passage, other_clinical, comments, sequence)
+                host_age, passage, other_clinical, comments, sequence) |> 
+  dplyr::filter(!grepl("VFFSP", strain))
 
 selected_dat |> 
   dplyr::group_by(subtype, collection_year) |> 

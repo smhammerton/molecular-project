@@ -1,0 +1,26 @@
+---
+title: "Genetic and Environmental Impacts on Alzheimer's Disease Incidence"
+author: "Savannah Hammerton"
+format: docx
+---
+
+30% Essay: A short review. The essay should take the format of the PLoS Pearls type articles. In short, a Pearl is to describe within a short space a small number of significant and interesting facts about a topic in the world genomic epidemiology. Specifically, the topic should focus on a chronic disease, gene environment interactions or other relevant topic. The essays are meant to be current, the audience is meant to be broad. Thus, an article should be readable by scientists working on epidemiology, and they should avoid details relevant only to insiders in a field. The essay should summarize succinctly the key exciting and important facts on a topic at a level that would allow it to be used in a graduate course. The essay should be no more than 1500 words with 1-2 figures/tables and a maximum of 20 references.
+
+# Introduction
+
+  * Physiologically, immunoreactive senile plaques (SP) and immunoreactive neurofibrillary tangles (NFT) have both been associated with AD [@killin16].
+
+# Varying pathogenesis and classifications of Alzheimer's Disease (AD)
+
+Alzheimer's Disease (AD) can be differentially described in regards to both the age of diagnosis and the general etiology. There are two distinct types of Alzheimer's Disease (AD) based on diagnosis age: early-onset (EOAD), which is AD diagnosed in those younger than 65, and late-onset (LOAD), diagnosed in those 65 and older [@trellechea18; @piaceri13]. EOAD and LOAD appear to have very different etiologies, with LOAD having a particularly complex etiology that is related to combinations of factors including genetic, environmental, and lifestyle characteristics that often interact with each other [@robinson17; @piaceri13]. 
+
+AD can also be broken down into familial (FAD), or a type related to mutations in three major genes, and sporadic, or a type related to a combination of genetic and environmental factors, Alzheimer's [@piaceri13]. FAD has been observed more commonly in early-onset cases, but has also been seen in late-onset cases [@piaceri13; @robinson17]. Mutations in the APP, PSEN1, and PSEN2 genes are thought to be directly responsible for FAD, and therefore, for most EOAD cases [@nih23a; khan20; @piaceri13]. The APOE4 gene has been shown to be associated with late-onset Alzheimer's disease (LOAD) [@khan20]
+
+# What does the _APOE4_ gene do? 
+
+
+# How do lifestyle and environment impact AD risk? 
+
+# What is the impact of _APOE4_ and environment together? 
+
+# Conclusion
