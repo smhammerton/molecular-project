@@ -1,26 +1,51 @@
 ---
 title: "Genetic and Environmental Impacts on Alzheimer's Disease Incidence"
 author: "Savannah Hammerton"
-format: docx
+format: 
+   docx:
+    citeproc: false
+    filters:
+      - at: pre-render
+        path: "../../_extensions/andrewheiss/wordcount/citeproc.lua"
+      - at: pre-render
+        path: "../../_extensions/andrewheiss/wordcount/wordcount.lua"
+csl: vancouver.csl
+bibliography: essay.bib
+abstract: |
+ The essay should summarize succinctly the key exciting and important facts on a topic at a level that would allow it to be used in a graduate course. The essay should be no more than 1500 words with 1-2 figures/tables and a maximum of 20 references.
 ---
 
-30% Essay: A short review. The essay should take the format of the PLoS Pearls type articles. In short, a Pearl is to describe within a short space a small number of significant and interesting facts about a topic in the world genomic epidemiology. Specifically, the topic should focus on a chronic disease, gene environment interactions or other relevant topic. The essays are meant to be current, the audience is meant to be broad. Thus, an article should be readable by scientists working on epidemiology, and they should avoid details relevant only to insiders in a field. The essay should summarize succinctly the key exciting and important facts on a topic at a level that would allow it to be used in a graduate course. The essay should be no more than 1500 words with 1-2 figures/tables and a maximum of 20 references.
 
 # Introduction
 
+Alzheimer's Disease (AD) was the sixth leading cause of death in the US in 2018, with an estimated 6 million diagnosed cases in 2017 expected to climb to anywhere from 14-15 million by 2016 [@matthews19; @nih23a; @robinson17]. It is clinically characterized by cognitive decline, loss of memory (primarily episodic memory), and a progressive loss in ability to carry out basic activities [@piaceri13; @nih23a; @tellechea18; @graff-radford21].
   * Physiologically, immunoreactive senile plaques (SP) and immunoreactive neurofibrillary tangles (NFT) have both been associated with AD [@killin16].
+
+# Risk factors of Alzheimer's Disease (AD)
+
+Some of the most common and strongest associations with the development of AD are reported to be advanced age, female sex, and the presence or mutations of certain genes [@scheyer18; @riedel16; @raulin22; @dolgin22; @cacace16]. Some studies have reported the higher risk in females to be due to increased longevity, but others have refuted this and shown menopause to be a particular time in which chemical changes in the brain could lead to neurological dysfunction [@scheyer18; @riedel16]. There also appears to be an interaction between genetics and sex, where there presence of the _APOE4_ gene increases the likelihood of developing AD in females more than it does in males [@riedel16]. Other factors such as exposure to heavy and other metals, traumatic brain injury, malnutrition, obesity, type II diabetes, vascular disease, history of certain infectious diseases, chronic stress, and various other environmental exposures [@aarmstrong19; @killin16].
 
 # Varying pathogenesis and classifications of Alzheimer's Disease (AD)
 
-Alzheimer's Disease (AD) can be differentially described in regards to both the age of diagnosis and the general etiology. There are two distinct types of Alzheimer's Disease (AD) based on diagnosis age: early-onset (EOAD), which is AD diagnosed in those younger than 65, and late-onset (LOAD), diagnosed in those 65 and older [@trellechea18; @piaceri13]. EOAD and LOAD appear to have very different etiologies, with LOAD having a particularly complex etiology that is related to combinations of factors including genetic, environmental, and lifestyle characteristics that often interact with each other [@robinson17; @piaceri13]. 
+Alzheimer's Disease (AD) can be differentially described in regards to both the age of diagnosis and the general etiology. There are two distinct types of Alzheimer's Disease (AD) based on diagnosis age: early-onset (EOAD), which is AD diagnosed in those younger than 65, and late-onset (LOAD), diagnosed in those 65 and older [@tellechea18; @piaceri13]. EOAD and LOAD appear to have very different etiologies, with LOAD having a particularly complex etiology that is related to combinations of factors including genetic, environmental, and lifestyle characteristics that often interact with each other [@robinson17; @piaceri13]. 
 
-AD can also be broken down into familial (FAD), or a type related to mutations in three major genes, and sporadic, or a type related to a combination of genetic and environmental factors, Alzheimer's [@piaceri13]. FAD has been observed more commonly in early-onset cases, but has also been seen in late-onset cases [@piaceri13; @robinson17]. Mutations in the APP, PSEN1, and PSEN2 genes are thought to be directly responsible for FAD, and therefore, for most EOAD cases [@nih23a; khan20; @piaceri13]. The APOE4 gene has been shown to be associated with late-onset Alzheimer's disease (LOAD) [@khan20]
+AD can also be broken down into familial (FAD), or a type related to mutations in three major genes, and sporadic, or a type related to a combination of genetic and environmental factors, Alzheimer's [@piaceri13]. FAD has been observed more commonly in early-onset cases, but has also been seen in late-onset cases [@piaceri13; @robinson17]. Mutations in the APP, PSEN1, and PSEN2 genes are thought to be directly responsible for FAD, and therefore, for most EOAD cases [@nih23a; @khan20; @piaceri13]. The APOE4 gene has been shown to be associated more strongly with late-onset Alzheimer's disease (LOAD) [@khan20].
+
+
 
 # What does the _APOE4_ gene do? 
 
+The _APOE4_ gene is with impaired brain cholesterol transportation and processing, which the _APOE_ gene is partially responsible for [@dolgin22; @raulin22; @riedel16]. Some variants of the _APOE_ gene actually appear protective, like the _APOE2_ gene, which is also associated with increased life expectancy [@raulin22]. However, presence of the _APOE4_ gene has be associated with anywhere from a 3-fold to a 15-fold increase in the development of AD [@riedel16; @dolgin22; @raulin22]. However, not all those with AD also have the _APOE4_ gene, and it is not the only gene associated with AD [@riedel16; @raulin22; @piaceri13].
 
 # How do lifestyle and environment impact AD risk? 
 
 # What is the impact of _APOE4_ and environment together? 
 
 # Conclusion
+
+
+
+\newpage
+
+# References 
+
